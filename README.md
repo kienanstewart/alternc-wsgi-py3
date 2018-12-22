@@ -118,12 +118,11 @@ Note: this requires '#2000' to resolve to a valid unix account. Therefore it doe
 
 # Todo
 
-1. Add templates for wsgi-http and wsgi-https
-2. Add support for storing and replacing new `%%VENV%%`, `%%APP_SUBDIR%%` tokens
+1. Add support for storing and replacing new `%%VENV%%`, `%%APP_SUBDIR%%` tokens
   in templates
-3. Add UI to allow for adding WSGI applications (custom UI is required to handle
+2. Add UI to allow for adding WSGI applications (custom UI is required to handle
   the VENV and APP_SUBDIR tokens).
-4. Debian package control, installation, and removal scripts
+3. Debian package control, installation, and removal scripts
 
 Further points of interest:
 
