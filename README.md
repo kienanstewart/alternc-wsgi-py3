@@ -3,7 +3,9 @@
 * libapache2-mod-wsgi-py3
 * python3-pip
 * python3-venv
-* (possibly) alternc-nss
+* alternc-nss
+  * alternc-nss provides unix user integration without which wsgi cannot look up
+  uid to users properly.
 
 # Server configuration
 
@@ -15,6 +17,37 @@
 
     python3 -m venv --copies /path/to/virtualenv/name
     mv /path/to/virtualenv/name /var/www/alternc/X/Xname/venv/name
+
+## Creating environments remotely
+
+Normally users in AlternC do not have shell access to run commands to manage
+virtual environments. There are are couple of ways it may work (though it may
+not always do so!).
+
+Ideally users in a remote environment build their applications with the same
+version of python as used on the AlternC host. In such a case, the venv can be
+copied normally.
+
+Option 1: Hack venv to switch python version
+
+1. Create the venv normally
+2. Activate and install all modules necessary
+3. Modify pyvenv.cfg and change the python version listed to match the AlternC
+host's python version
+4. Create a symlink in the lib/ folder so both version work:
+
+    ln -s python-<local_version> lib/python-<alternc_host_version>
+
+
+Option 2: virtualenv
+
+It is possible with virtualenv to use a non-system python and make it
+relocatable; however, this functionality may not work 100% and may be
+deprecated.
+
+1. Install non-system python in /opt/ which matches the version on the AlternC
+host.
+2. Create virtualenv: `virtualenv --python=/opt/python-<alternc_host_version --relocatable <name>`
 
 # Create/Deploy App
 
@@ -85,14 +118,12 @@ Note: this requires '#2000' to resolve to a valid unix account. Therefore it doe
 
 # Todo
 
-1. Confirm alternc-nss provides enough integration to allow wsgi to function
-  using numeric IDs
-2. Add templates for wsgi-http and wsgi-https
-3. Add support for storing and replacing new `%%VENV%%`, `%%APP_SUBDIR%%` tokens
+1. Add templates for wsgi-http and wsgi-https
+2. Add support for storing and replacing new `%%VENV%%`, `%%APP_SUBDIR%%` tokens
   in templates
-4. Add UI to allow for adding WSGI applications (custom UI is required to handle
+3. Add UI to allow for adding WSGI applications (custom UI is required to handle
   the VENV and APP_SUBDIR tokens).
-5. Debian package control, installation, and removal scripts
+4. Debian package control, installation, and removal scripts
 
 Further points of interest:
 
@@ -101,7 +132,6 @@ Further points of interest:
   manner?
 * Are there other steps that should be taken to prevent users applications from
   interfering with each other?
-* Does it work to create venvs and project code elsewhere and upload via FTP?
 * Is it work considering multi-process daemon setups or more complicated Vhost
   configurations?
 
