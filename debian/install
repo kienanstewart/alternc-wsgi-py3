@@ -1,0 +1,3 @@
+src/m_wsgipy3.php usr/share/alternc/panel/class/
+src/schema/schema.sql usr/share/alternc/install/alternc-wsgi-py3/
+src/templates/ etc/alternc/

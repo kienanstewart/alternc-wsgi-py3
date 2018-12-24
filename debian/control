@@ -1,0 +1,22 @@
+Source: alternc-wsgi-py3
+Section: admin
+Priority: optional
+Maintainer: Kienan Stewart <kienan.stewart@burntworld.ca>
+Build-Depends:
+    debhelper (>= 10)
+Standards-Version: 4.2.1
+
+Package: alternc-wsgi-py3
+Architecture: all
+Depends:
+    alternc (>= 3.5.0~rc1),
+    alternc-nss,
+    libapache2-mod-wsgi-py3,
+    ${shlibs:Depends},
+    ${misc:Depends}
+Recommends:
+    python3-pip,
+    python3-venv
+Description: AlternC plugin for creating subdomains for Python applications
+ alternc-wsgi is an AlternC plugin for creating subdomains which run Python
+ applications using WSGI.

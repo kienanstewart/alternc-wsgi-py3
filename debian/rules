@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/default.mk
+
+%:
+	dh $@
+
+overrtide_dh_auto_install:
+	mkdir -p usr/share/alternc/schema/alternc-wsgi-py3
+	cp -r src/schema/* usr/share/alternc/schema/alternc-wsgi-py3/
