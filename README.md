@@ -1,11 +1,14 @@
 # Requirements
 
 * libapache2-mod-wsgi-py3
-* python3-pip
-* python3-venv
 * alternc-nss
   * alternc-nss provides unix user integration without which wsgi cannot look up
   uid to users properly.
+
+Recommends:
+
+* python3-pip
+* python3-venv
 
 # Server configuration
 
@@ -118,11 +121,7 @@ Note: this requires '#2000' to resolve to a valid unix account. Therefore it doe
 
 # Todo
 
-1. Add support for storing and replacing new `%%VENV%%`, `%%APP_SUBDIR%%` tokens
-  in templates
-2. Add UI to allow for adding WSGI applications (custom UI is required to handle
-  the VENV and APP_SUBDIR tokens).
-3. Debian package control, installation, and removal scripts
+1. Validation/sanitization of the app_subdir and venv (especially relative paths).
 
 Further points of interest:
 
@@ -133,6 +132,9 @@ Further points of interest:
   interfering with each other?
 * Is it work considering multi-process daemon setups or more complicated Vhost
   configurations?
+* When a subdomain with WSGI is misconfigured, or the app is misconfigured, the
+  processes can spam the error log a lot. Is it possible to limit the number of
+  retries?
 
 # License
 
