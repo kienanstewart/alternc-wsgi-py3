@@ -1,5 +1,9 @@
 # Requirements
 
+* alternc with subdomain hooks
+  * This is a series of patches to allow plugins to interact with certain parts
+  of the AlternC core which aren't yet included upstream.
+  @see https://github.com/kienanstewart/AlternC/tree/subdomain_hooks
 * libapache2-mod-wsgi-py3
 * alternc-nss
   * alternc-nss provides unix user integration without which wsgi cannot look up
