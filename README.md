@@ -126,6 +126,7 @@ Note: this requires '#2000' to resolve to a valid unix account. Therefore it doe
 # Todo
 
 1. Validation/sanitization of the app_subdir and venv (especially relative paths).
+2. Handle vhost templating properly when no venv is set
 
 Further points of interest:
 
